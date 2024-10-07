@@ -2,9 +2,35 @@
 
 This is the official code for paper `Li2Former: Omni-Dimension Aggregation Transformer for Person Detection in 2-D Range Data`.
 
-**Source code will be available soon**.
+# Introduction
 
-## Result
+The sparsity of plane point clouds remains human
+detection based on 2-D LiDAR a challenging task. Recent deep-
+learning-based methods have made significant progress, but their
+unidimensional feature modeling hinders the flow of informa-
+tion across different axes (i.e., temporal, spatial, and batched).
+Besides, convolution operators limit the effective receptive field
+(ERF) of the model. To promote multidimensional interaction,
+we propose an omni-dimensional aggregation (ODA) module
+composed of a main aggregation stream and an auxiliary feature
+stream to assist in the temporal–spatial joint encoding as well
+as implicitly models the potential relationships between samples.
+By cascading multiple ODA blocks, the semantic gaps between
+different features are gradually bridged. In addition, to improve
+network convergence and generalization, an adaptive focus mech-
+anism (AFM) is designed to guide the model to optimize more
+on difficult samples instead of simple or low-quality samples.
+Extensive experiments demonstrate the effectiveness of the pro-
+posed pipeline, achieving 76.4% and 81.4% AP on the DROW
+and JRDB benchmark datasets, respectively, surpassing the exist-
+ing state-of-the-art (SOTA) results. Competitive results are also
+achieved in inference speed. Furthermore, we successfully vali-
+date the proposed model through real-world environments.
+
+![architecture.png](./assets/architecture.png)
+
+
+# Result
 
 ### DROW Dataset
 
@@ -36,3 +62,13 @@ DR-SPAAM            |0.721| 0.768 | 0.718 | 0.713 |14.91 |  75.2
 \+ pseudo labels    | 0.744   | 0.787 | 0.728 | 0.728  |14.91 |  75.2
 Li2Former($T=5$)    | 0.740          | 0.796 | 0.744           | 0.742            | 19.25       |57.0
 Li2Former-A($T=5$)  | 0.749          | **0.814** | **0.750**            | **0.746**               | 19.25            | 57.0 
+
+# Citing us
+```
+@article{0Li2Former,
+  title={Li2Former: Omni-Dimension Aggregation Transformer for Person Detection in 2-D Range Data},
+  author={ Yang, Haodong  and  Yang, Yadong  and  Yao, Chenpeng  and  Liu, Chengju  and  Chen, Qijun },
+  journal={IEEE Transactions on Instrumentation and Measurement},
+  volume={73},
+}
+```
