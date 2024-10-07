@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<launch>
+	<node name="pedestrian_tracker" output="screen" pkg="pedestrian_tracker" type="li2former_ros.py">
+		<!-- <param name="weight" value="$(find pedestrian_tracker)/weight/ckpt_jrdb_ann_drow3_e40.pth" />
+		<param name="model" value="DROW" />
+		<param name="cfg" value="$(find pedestrian_tracker)/scripts/cfgs/ros_drownet.yaml" /> -->
+		<param name="weight" value="$(find pedestrian_tracker)/weight/drow_li2former_ckpt_e41_5_5_num_1.pth" />
+		<param name="model" value="Li2Former" />
+		<param name="cfg" value="$(find pedestrian_tracker)/scripts/cfgs/ros_li2former.yaml" />
+	</node>
+
+  <arg name="map" default="417_passage" />
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find ped_real)/maps/$(arg map).yaml"/>
+<!-- <node pkg="tf2_ros" name="odom2map" type="static_transform_publisher" args="0 0 0 0 0 0 /map /odom" output="screen"/>  
+<node pkg="tf2_ros" name="base2odom" type="static_transform_publisher" args="0 0 0 0 0 0 /odom /base_link" output="screen"/> 
+<node pkg="tf2_ros" name="base2base" type="static_transform_publisher" args="0 0 0 0 0 0 /base_link /base_footprint" output="screen"/>  
+
+<include file="$(find ped_simulation)/launch/include/amcl.launch.xml" >
+      <arg name="robot_x" value="0.0" />
+        <arg name="robot_y" value="0.0" />
+        <arg name="robot_z" value="0.0" />
+</include>
+  <include file="$(find ped_simulation)/launch/include/move_base.launch.xml" /> -->
+
+
+  <arg name="rviz_file" default="real_world.rviz"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ped_real)/rviz/$(arg rviz_file)" unless="$(eval arg('rviz_file') == '')"/>
+  <node name="rviz" pkg="rviz" type="rviz" if="$(eval arg('rviz_file') == '')"/>
+</launch>

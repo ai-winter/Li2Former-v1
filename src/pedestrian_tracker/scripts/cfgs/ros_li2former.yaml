@@ -1,0 +1,53 @@
+# detector
+MODEL:
+  TYPE: Li2Former
+  GPU: True
+  KWARGS:
+    NUM_CTS: 90
+    NUM_PTS: 64
+    BACKBONE_TYPE: ConvBackbone
+    MAX_NUM_PTS: 1.e+6
+    MODE: TEMPORAL
+    TEMPORAL_ENCODER:
+      D_MODEL: 512
+      NHEAD: 8
+      NUM_LAYERS: 1
+      DIM_FFN: 2048
+      DROPOUT: 0.1
+      ACTIVATION: relu
+      NORMAL_BEFORE: True      
+    SPATIAL_ENCODER:
+      D_MODEL: 512
+      NHEAD: 8
+      NUM_LAYERS: 3
+      DIM_FFN: 2048
+      DROPOUT: 0.1
+      ACTIVATION: relu
+      NORMAL_BEFORE: True
+
+# data preprocess
+NUM_SCANS: 5
+SCAN_STRIDE: 1
+POINT_STRIDE: 1
+CUTOUT_KWARGS:
+    FIXED: True
+    CENTERED: True
+    WINDOW_WIDTH: 1.0
+    WINDOW_DEPTH: 0.5
+    NUM_CUTOUT_PTS: 64
+    PADDING_VAL: 29.99
+    AREA_MODE: True
+
+PIPELINE:
+  SEED: 3407
+
+  LOSS:
+    KWARGS:
+      TYPE: ["labels", "reg"]
+      LOSS_WEIGHT: {"loss_labels": 1.0, "loss_reg": 3.0, "loss_giou": 2.0}
+      EOS_WEIGHT: 0.1
+      COST_WEIGHT: {"cost_labels": 1.0, "cost_boxes": 5.0, "cost_giou": 2.0}
+      DYNAMIC_REG: {"a": 1.5, "r": 0.35, "delta": 0.333333, "alpha": 1.5}
+
+  TEST:
+    FOV_DEGREE: 360

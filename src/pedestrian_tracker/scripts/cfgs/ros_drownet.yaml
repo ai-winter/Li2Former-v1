@@ -1,0 +1,32 @@
+MODEL:
+  TYPE: DROW
+  GPU: True
+  KWARGS:
+    DROPOUT: 0.5
+    MAX_NUM_PTS: 1000000
+
+# data preprocess
+NUM_SCANS: 1
+SCAN_STRIDE: 1
+POINT_STRIDE: 1
+CUTOUT_KWARGS:
+    FIXED: True
+    CENTERED: True
+    WINDOW_WIDTH: 1.0
+    WINDOW_DEPTH: 0.5
+    NUM_CUTOUT_PTS: 64
+    PADDING_VAL: 29.99
+    AREA_MODE: True
+
+PIPELINE:
+  SEED: 3407
+
+  LOSS:
+    KWARGS:
+      TYPE: ["cls", "reg"]
+      LOSS_WEIGHT: {"loss_cls": 1.0, "loss_reg": 1.0}
+
+  TEST:
+    FOV_DEGREE: 360
+
+

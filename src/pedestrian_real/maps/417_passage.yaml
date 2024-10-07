@@ -1,0 +1,6 @@
+image: ./417_passage.pgm
+resolution: 0.050000
+origin: [-16.847948, -21.778033, 0.0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ped_real</name>
+  <version>0.2.0</version>
+  <description>
+    ROS based pedestrian detector
+  </description>
+
+  <maintainer email="913982779@qq.com">Winter</maintainer>
+
+  <license>BSD</license>
+
+  <author email="913982779@qq.com">Winter</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

@@ -1,0 +1,19 @@
+map: passage
+world: empty
+robot_config:
+  robot_type: turtlebot3_waffle
+  robot_x_pos: 5.0
+  robot_y_pos: 2.0
+  robot_z_pos: 0.0
+  robot_yaw: 1.57
+  # robot_x_pos: 0.0
+  # robot_y_pos: 0.0
+  # robot_z_pos: 0.0
+  # robot_yaw: -1.57
+rviz_file: sim_env.rviz
+pedestrians: ped_circle_config.yaml
+# pedestrians: ped_sider_config.yaml
+
+# pedestrians: pedestrians_config.yaml
+
+# obstacles: obstacles_config.yaml
